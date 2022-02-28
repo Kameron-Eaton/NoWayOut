@@ -3,7 +3,7 @@
  * Date Created: Feb 27, 2022
  * 
  * Last Edited by: NA
- * Last Edited: Feb 27, 2022
+ * Last Edited: Feb 28, 2022
  * 
  * Description: Abstract class. Functions as parent for 3 specific node movement cases
 ****/
@@ -17,6 +17,7 @@ public abstract class Node : MonoBehaviour
 {
     public Transform cameraPos; //camera position
     public List<Node> visNode = new List<Node>(); // reachable nodes from current node
+    public bool ignoreCameraRotation; //flag to ignore camera rotation
 
     [HideInInspector]
     public Collider col; //collider for detecting clicks
@@ -43,7 +44,7 @@ public abstract class Node : MonoBehaviour
 
         GameManager.ins.currNode = this;  //set currNode
 
-        GameManager.ins.rig.AlignTo(cameraPos); //move camera to node
+        GameManager.ins.rig.AlignTo(cameraPos, ignoreCameraRotation); //move camera to node
 
         if (col != null)
         {

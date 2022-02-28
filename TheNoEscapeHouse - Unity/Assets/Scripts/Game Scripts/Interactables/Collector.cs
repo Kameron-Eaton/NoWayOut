@@ -16,7 +16,10 @@ public class Collector : Interactable
     public Item myItem;
     public override void Interact()
     {
-        GameManager.ins.itemHeld = myItem; //Adds item to inventory
+        if (myItem.itemUsed)
+            return;
+        GameManager.ins.itemHeld.itemName = myItem.itemName;//Adds item to inventory
+        GameManager.ins.itemHeld.itemUsed = myItem.itemUsed;
         GameManager.ins.invDisplay.UpdateDisplay(); //Update inventory HUD display
     }
 }

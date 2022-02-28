@@ -14,4 +14,5 @@ using UnityEngine;
 public class Item 
 {
     public string itemName;
+    public bool itemUsed;
 }

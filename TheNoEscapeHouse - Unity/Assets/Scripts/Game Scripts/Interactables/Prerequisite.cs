@@ -14,7 +14,7 @@ using UnityEngine;
 public class Prerequisite : MonoBehaviour
 {
     public bool requireItem; //require item if true
-
+    
     public interSwitch watch; //require switch active
     public bool nodeAccess;
 
@@ -25,8 +25,15 @@ public class Prerequisite : MonoBehaviour
             if (!requireItem)
                 return watch.state;
             else
-            {
-                return GameManager.ins.itemHeld.itemName == checkCollector.myItem.itemName;
+            { 
+                if(GameManager.ins.itemHeld.itemName == checkCollector.myItem.itemName)
+                {
+                    checkCollector.myItem.itemUsed = true;
+                    GameManager.ins.itemHeld.itemName = "";
+                    GameManager.ins.invDisplay.UpdateDisplay();
+                    return true;
+                }
+                return false;
             }
         }
     }
