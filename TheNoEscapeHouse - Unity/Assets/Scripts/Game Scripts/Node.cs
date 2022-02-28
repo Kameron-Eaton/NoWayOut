@@ -22,17 +22,18 @@ public abstract class Node : MonoBehaviour
     public Collider col; //collider for detecting clicks
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         col = GetComponent<Collider>();
-    }//end Start
+        col.enabled = false;
+    }//end Awake
 
     void OnMouseDown()
     {
         Arrive();
     }//end OnMouseDown
 
-    public void Arrive()
+    public virtual void Arrive()
     {
         if(GameManager.ins.currNode != null)
         {
@@ -57,7 +58,7 @@ public abstract class Node : MonoBehaviour
         }//end foreach
     }//end Arrive
 
-    public void Leave()
+    public virtual void Leave()
     {
         foreach (Node node in visNode)
         {
