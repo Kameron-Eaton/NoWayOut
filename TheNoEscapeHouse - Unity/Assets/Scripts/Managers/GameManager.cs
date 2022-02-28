@@ -114,7 +114,11 @@ public class GameManager : MonoBehaviour
    private static string thisDay = System.DateTime.Now.ToString("yyyy"); //today's date as string
 
     public static GameManager ins;
+
+    [HideInInspector]
     public Node currNode;
+
+    public CameraRig rig;
 
     /*** MEHTODS ***/
    
@@ -156,6 +160,11 @@ public class GameManager : MonoBehaviour
 
         //Check Score
         CheckScore();
+
+        if(Input.GetMouseButtonDown(1) && currNode.GetComponent<Prop>() != null)
+        {
+            currNode.GetComponent<Prop>().loc.Arrive();
+        }
 
     }//end Update
 
