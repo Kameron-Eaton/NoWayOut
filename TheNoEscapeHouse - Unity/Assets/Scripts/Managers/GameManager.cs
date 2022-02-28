@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
    //Awake is called when the game loads (before Start).  Awake only once during the lifetime of the script instance.
     void Awake()
     {
+        ins = this; //Define singleton
+
         //runs the method to check for the GameManager
         CheckGameManagerIsInScene();
 
@@ -130,7 +132,7 @@ public class GameManager : MonoBehaviour
         //Get the saved high score
         GetHighScore();
 
-        ins = this;
+        
 
     }//end Awake()
 

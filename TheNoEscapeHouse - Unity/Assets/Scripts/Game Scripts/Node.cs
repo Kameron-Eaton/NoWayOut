@@ -28,8 +28,44 @@ public abstract class Node : MonoBehaviour
 
     void OnMouseDown()
     {
+        Arrive();
+    }//end OnMouseDown
+
+    void Arrive()
+    {
+        if(GameManager.ins.currNode != null)
+        {
+            //leave existing current node
+            GameManager.ins.currNode.Leave();
+        }
+
+        GameManager.ins.currNode = this;  //set currNode
+
         Camera.main.transform.position = cameraPos.position; //set camera position to node position
         Camera.main.transform.rotation = cameraPos.rotation; //set camera rotation to node rotation
-    }//end OnMouseDown
+
+        if (col != null)
+        {
+            col.enabled = false; //turn off own collider
+        }//end if
+        foreach (Node node in visNode)
+        {
+            if (node.col != null)
+            {
+                node.col.enabled = true; //turn on all visible node colliders
+            }//end if
+        }//end foreach
+    }//end Arrive
+
+    public void Leave()
+    {
+        foreach (Node node in visNode)
+        {
+            if (node.col != null)
+            {
+                node.col.enabled = false; //turn off all visible node colliders
+            }//end if
+        }//end foreach
+    }//end Leave
 
 }//end Node
