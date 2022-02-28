@@ -2,8 +2,8 @@
  * Created by: Akram Taghavi-Burrs
  * Date Created: Feb 23, 2022
  * 
- * Last Edited by: NA
- * Last Edited: Feb 23, 2022
+ * Last Edited by: Kameron Eaton
+ * Last Edited: Feb 27, 2022
  * 
  * Description: Basic GameManager Template
 ****/
@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
    //reference to system time
    private static string thisDay = System.DateTime.Now.ToString("yyyy"); //today's date as string
 
+    public static GameManager ins;
+    public Node currNode;
 
     /*** MEHTODS ***/
    
@@ -127,6 +129,8 @@ public class GameManager : MonoBehaviour
         
         //Get the saved high score
         GetHighScore();
+
+        ins = this;
 
     }//end Awake()
 
