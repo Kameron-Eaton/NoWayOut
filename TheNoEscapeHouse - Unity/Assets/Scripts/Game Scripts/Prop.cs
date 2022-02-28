@@ -34,8 +34,12 @@ public class Prop : Node
 
         if(inter != null)
         {
+            if(GetComponent<Prerequisite>() && !GetComponent<Prerequisite>().Complete)
+            {
+                return;
+            }
             col.enabled = true;
-            inter.enabled = true; //make object interactable
+            inter.enabled = true; //make object interactable if prerequisite is met
         }//end if
     }//end Arrive
 

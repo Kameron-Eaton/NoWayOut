@@ -18,7 +18,17 @@ public class IVCanvas : MonoBehaviour
 
     public void Activate(Sprite pic)
     {
+        GameManager.ins.currNode.SetVisibleNodes(false);
+        GameManager.ins.currNode.col.enabled = false;
         gameObject.SetActive(true);
         imageHolder.sprite = pic;
     }//end Activate
+
+    public void Close()
+    {
+        GameManager.ins.currNode.SetVisibleNodes(true);
+        GameManager.ins.currNode.col.enabled = true;
+        gameObject.SetActive(false);
+        imageHolder.sprite = null;
+    }//end Close
 }//end IVCanvas

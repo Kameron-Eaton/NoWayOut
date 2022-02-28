@@ -34,6 +34,8 @@ public class MouseControl : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButton(0) && (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)){
+            if (GameManager.ins.ivCanvas.gameObject.activeInHierarchy || GameManager.ins.obsCamera.gameObject.activeInHierarchy)
+                return; //don't move camera if image viewer is active
             y_Axis = rig.yAxis.localRotation;
             x_Axis = rig.xAxis.localRotation;
             

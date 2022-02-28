@@ -3,7 +3,7 @@
  * Date Created: Feb 23, 2022
  * 
  * Last Edited by: Kameron Eaton
- * Last Edited: Feb 27, 2022
+ * Last Edited: Feb 28, 2022
  * 
  * Description: Basic GameManager Template
 ****/
@@ -117,12 +117,17 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public Node currNode;
+    public Item itemHeld;
 
     public CameraRig rig;
 
     public Node startingNode;
 
     public IVCanvas ivCanvas;
+
+    public ObsCamera obsCamera;
+
+    public HUDCanvas invDisplay;
 
     /*** MEHTODS ***/
    
@@ -140,6 +145,8 @@ public class GameManager : MonoBehaviour
         
         //Get the saved high score
         GetHighScore();
+
+        obsCamera.gameObject.SetActive(false); //set observer camera false
 
     }//end Awake()
 
@@ -171,8 +178,18 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1) && currNode.GetComponent<Prop>() != null)
         {
+            if (ivCanvas.gameObject.activeInHierarchy)
+            {
+                ivCanvas.Close();
+                return; //close image viewer and return if image viewer is open
+            }//end if
+            if (obsCamera.gameObject.activeInHierarchy)
+            {
+                obsCamera.Close(); 
+                return; //close observation camera and return if camera is open
+            }//end if
             currNode.GetComponent<Prop>().loc.Arrive();
-        }
+        }//end if
 
     }//end Update
 

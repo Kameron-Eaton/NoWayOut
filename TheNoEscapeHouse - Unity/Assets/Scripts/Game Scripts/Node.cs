@@ -49,24 +49,33 @@ public abstract class Node : MonoBehaviour
         {
             col.enabled = false; //turn off own collider
         }//end if
-        foreach (Node node in visNode)
-        {
-            if (node.col != null)
-            {
-                node.col.enabled = true; //turn on all visible node colliders
-            }//end if
-        }//end foreach
+        SetVisibleNodes(true); //turn on all visible nodes
     }//end Arrive
 
     public virtual void Leave()
+    {
+        SetVisibleNodes(false); //turn off all visible nodes
+    }//end Leave
+
+    public void SetVisibleNodes(bool set)
     {
         foreach (Node node in visNode)
         {
             if (node.col != null)
             {
-                node.col.enabled = false; //turn off all visible node colliders
+                if (node.GetComponent<Prerequisite>() && node.GetComponent<Prerequisite>().nodeAccess)
+                {
+                    if (node.GetComponent<Prerequisite>().Complete)
+                    {
+                        node.col.enabled = set; //set all visible nodes to the passed boolean value if prerequisite is met
+                    }//end if
+                }//end if
+                else
+                {
+                    node.col.enabled = set; //set all visible nodes to the passed boolean value
+                }//end else 
             }//end if
         }//end foreach
-    }//end Leave
+    }//end SetVisibleNodes
 
 }//end Node
