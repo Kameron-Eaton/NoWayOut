@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
 
     public HUDCanvas invDisplay;
 
+    public Keypad keyCanvas;
+
     /*** MEHTODS ***/
    
    //Awake is called when the game loads (before Start).  Awake only once during the lifetime of the script instance.
