@@ -10,6 +10,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Prerequisite : MonoBehaviour
 {
@@ -18,6 +20,10 @@ public class Prerequisite : MonoBehaviour
     
     public interSwitch watch; //require switch active
     public bool nodeAccess;
+    public bool hasDialogue;
+    public string dialog = "";
+    public TextMeshProUGUI text;
+    public float timer = 2f;
 
     public bool Complete
     {
@@ -37,9 +43,21 @@ public class Prerequisite : MonoBehaviour
                     GameManager.ins.invDisplay.UpdateDisplay();
                     return true;
                 }
+                if (hasDialogue)
+                {
+                    text.GetComponent<TextMeshProUGUI>().enabled = true;
+                    text.text = dialog.ToString();
+                    StartCoroutine(DisableDialogue());
+                }
                 return false;
             }
         }
+    }
+
+    IEnumerator DisableDialogue()
+    {
+        yield return new WaitForSeconds(timer);
+        text.GetComponent<TextMeshProUGUI>().enabled = false;
     }
 
     public Collector checkCollector;
