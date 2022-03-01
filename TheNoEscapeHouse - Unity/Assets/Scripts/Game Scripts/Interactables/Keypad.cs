@@ -19,6 +19,11 @@ public class Keypad : MonoBehaviour
     public TextMeshProUGUI textOB;
     public string answer = "12345";
 
+    public GameObject animateOB;
+    public Animator ANI;
+
+    public bool animate;
+
     
     // Start is called before the first frame update
     void Start()
@@ -59,6 +64,7 @@ public class Keypad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+        if (textOB.text == "Right" && animate)
+            ANI.SetBool("open", true);
     }
 }
