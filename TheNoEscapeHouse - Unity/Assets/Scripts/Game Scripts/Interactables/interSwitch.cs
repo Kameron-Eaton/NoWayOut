@@ -24,7 +24,8 @@ public class interSwitch : Interactable
     {
         if (state == true)
             return;
-        ANI.SetBool("Flipped", true);
+        if(animate)
+          ANI.SetBool("Flipped", true);
         state = !state;
         if (Change != null)
             Change();

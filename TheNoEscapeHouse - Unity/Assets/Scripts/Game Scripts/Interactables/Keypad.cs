@@ -34,6 +34,8 @@ public class Keypad : MonoBehaviour
 
     public void Number(int number)
     {
+        if (textOB.text.Length > 5)
+            return;
         textOB.text += number.ToString();
     }
 
