@@ -15,7 +15,7 @@ public class interSwitch : Interactable
 {
     public bool state;
     public bool animate;
-    public Animator ANI;
+    public List<AnimateReactor> ANI;
 
     public delegate void OnStateChange();
     public event OnStateChange Change;
@@ -24,8 +24,14 @@ public class interSwitch : Interactable
     {
         if (state == true)
             return;
-        if(animate)
-          ANI.SetBool("Flipped", true);
+        if (animate)
+        {
+            foreach (AnimateReactor playAni in ANI)
+            {
+                playAni.complete = true;
+                playAni.React("Flipped");
+            }
+        }
         state = !state;
         if (Change != null)
             Change();

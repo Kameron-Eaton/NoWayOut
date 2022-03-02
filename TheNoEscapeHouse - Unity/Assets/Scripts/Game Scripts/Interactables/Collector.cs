@@ -21,5 +21,6 @@ public class Collector : Interactable
         GameManager.ins.itemHeld.itemName = myItem.itemName;//Adds item to inventory
         GameManager.ins.itemHeld.itemUsed = myItem.itemUsed;
         GameManager.ins.invDisplay.UpdateDisplay(); //Update inventory HUD display
+        this.gameObject.SetActive(false);
     }
 }
