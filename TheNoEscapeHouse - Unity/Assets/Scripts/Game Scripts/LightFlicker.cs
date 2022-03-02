@@ -16,7 +16,7 @@ public class LightFlicker : MonoBehaviour
     public Light lightOB;
     public float minTime;
     public float maxTime;
-
+    public bool stop;
     [HideInInspector]
     public float timer;
 
@@ -29,6 +29,8 @@ public class LightFlicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stop)
+            return;
         FlickerLight();
     }
 

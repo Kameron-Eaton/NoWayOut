@@ -29,8 +29,10 @@ public class Prerequisite : MonoBehaviour
     {
         get
         {
-            if (!requireItem)
+            if (!requireItem) 
+            {
                 return watch.state;
+            }
             else
             {
                 if (prereqMet)
@@ -49,8 +51,10 @@ public class Prerequisite : MonoBehaviour
                     text.text = dialog.ToString();
                     StartCoroutine(DisableDialogue());
                 }
+
                 return false;
             }
+
         }
     }
 
