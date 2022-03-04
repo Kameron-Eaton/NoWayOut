@@ -24,6 +24,8 @@ public class Keypad : MonoBehaviour
 
     public bool animate;
 
+    public AudioSource keyPress;
+
     
     // Start is called before the first frame update
     void Start()
@@ -37,10 +39,12 @@ public class Keypad : MonoBehaviour
         if (textOB.text.Length > 5)
             return;
         textOB.text += number.ToString();
+        keyPress.Play();
     }
 
     public void Execute()
     {
+        keyPress.Play();
         if(textOB.text == answer)
         {
             textOB.text = "Right";
@@ -53,6 +57,7 @@ public class Keypad : MonoBehaviour
 
     public void Clear()
     {
+        keyPress.Play();
         textOB.text = "";
     }
 

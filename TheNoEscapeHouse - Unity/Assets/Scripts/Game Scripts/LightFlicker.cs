@@ -1,9 +1,9 @@
 /**** 
  * Created by: Kameron Eaton
- * Date Created: Feb 29, 2022
+ * Date Created: Feb 28, 2022
  * 
  * Last Edited by: NA
- * Last Edited: Feb 29, 2022
+ * Last Edited: March 3, 2022
  * 
  * Description: Flickers the light attached to this script
 ****/
@@ -16,7 +16,7 @@ public class LightFlicker : MonoBehaviour
     public Light lightOB;
     public float minTime;
     public float maxTime;
-    public bool stop;
+    public AudioSource flicker;
     [HideInInspector]
     public float timer;
 
@@ -29,8 +29,6 @@ public class LightFlicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stop)
-            return;
         FlickerLight();
     }
 
@@ -42,6 +40,8 @@ public class LightFlicker : MonoBehaviour
         {
             lightOB.enabled = !lightOB.enabled;
             timer = Random.Range(minTime, maxTime);
+            if(lightOB.enabled == true)
+                flicker.Play();
         }
 
     }

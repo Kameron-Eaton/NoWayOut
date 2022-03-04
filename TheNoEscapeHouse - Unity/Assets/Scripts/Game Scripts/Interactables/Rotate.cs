@@ -17,6 +17,7 @@ public class Rotate : Interactable
     public Animator ANI;
     public Directions myDirection;
     public RotatePuzzle rot;
+    public AudioSource rotSound;
 
     public void Start()
     {
@@ -50,6 +51,7 @@ public class Rotate : Interactable
         ANI.SetBool("North", true);
         ANI.SetBool("East", false);
         myDirection = Directions.North;
+        rotSound.Play();
     }
 
     public void RotateWest()
@@ -57,6 +59,7 @@ public class Rotate : Interactable
         ANI.SetBool("West", true);
         ANI.SetBool("North", false);
         myDirection = Directions.West;
+        rotSound.Play();
     }
 
     public void RotateSouth()
@@ -64,6 +67,7 @@ public class Rotate : Interactable
         ANI.SetBool("South", true);
         ANI.SetBool("West", false);
         myDirection = Directions.South;
+        rotSound.Play();
     }
 
     public void RotateEast()
@@ -71,5 +75,6 @@ public class Rotate : Interactable
         ANI.SetBool("East", true);
         ANI.SetBool("South", false);
         myDirection = Directions.East;
+        rotSound.Play();
     }
 }
