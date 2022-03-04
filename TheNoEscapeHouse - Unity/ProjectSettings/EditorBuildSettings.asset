@@ -13,7 +13,16 @@ EditorBuildSettings:
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Transition_00.unity
+    guid: 09d4c32a1d827fc47ab3835cbd79b89d
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/level_01.unity
+    guid: 9f242b07f7e35c24db6eef6edbd8dc83
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Transition_01.unity
     guid: b9e51ec672de5e141ba9bb7907039c34
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/level_02.unity
+    guid: e93782b702a1abc478f900390e283e69
   - enabled: 1
     path: Assets/Scenes/Menu Scenes/end_scene.unity
     guid: bc32eb117b0fba6428d47afd7e20af10

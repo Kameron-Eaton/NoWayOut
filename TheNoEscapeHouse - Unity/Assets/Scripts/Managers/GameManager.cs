@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject); //In this case you need to delete this gm
         }
-        DontDestroyOnLoad(this); //Do not delete the GameManager when scenes load
+        //Do not delete the GameManager when scenes load
         Debug.Log(gm);
     }//end CheckGameManagerIsInScene()
     #endregion
@@ -144,9 +144,6 @@ public class GameManager : MonoBehaviour
 
         //store the current scene
         currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        
-        //Get the saved high score
-        GetHighScore();
 
         obsCamera.gameObject.SetActive(false); //set observer camera false
 
@@ -155,6 +152,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         startingNode.Arrive();
+        
     }//end Start
 
 
@@ -174,9 +172,6 @@ public class GameManager : MonoBehaviour
             if (levelLost && (lives == 0)) { GameOver(); }
 
         }//end if (gameState == gameStates.Playing)
-
-        //Check Score
-        CheckScore();
 
         if(Input.GetMouseButtonDown(1) && currNode.GetComponent<Prop>() != null)
         {
@@ -209,21 +204,6 @@ public class GameManager : MonoBehaviour
 
         lives = numberOfLives; //set the number of lives
         score = 0; //set starting score
-
-        //set High Score
-        if (recordHighScore) //if we are recording highscore
-        {
-            //if the high score, is less than the default high score
-            if (highScore <= defaultHighScore)
-            {
-                highScore = defaultHighScore; //set the high score to defulat
-                PlayerPrefs.SetInt("HighScore", highScore); //update high score PlayerPref
-            }//end if (highScore <= defaultHighScore)
-        }//end  if (recordHighScore) 
-
-        endMsg = defaultEndMessage; //set the end message default
-
-        playerWon = false; //set player winning condition to false
     }//end StartGame()
 
 
@@ -265,30 +245,4 @@ public class GameManager : MonoBehaviour
         } //end if (gameLevelsCount <=  gameLevels.Length)
 
     }//end NextLevel()
-
-    void CheckScore()
-    { //This method manages the score on update. Right now it just checks if we are greater than the high score.
-  
-        //if the score is more than the high score
-        if (score > highScore)
-        { 
-            highScore = score; //set the high score to the current score
-           PlayerPrefs.SetInt("HighScore", highScore); //set the playerPref for the high score
-        }//end if(score > highScore)
-
-    }//end CheckScore()
-
-    void GetHighScore()
-    {//Get the saved highscore
- 
-        //if the PlayerPref alredy exists for the high score
-        if (PlayerPrefs.HasKey("HighScore"))
-        {
-            Debug.Log("Has Key");
-            highScore = PlayerPrefs.GetInt("HighScore"); //set the high score to the saved high score
-        }//end if (PlayerPrefs.HasKey("HighScore"))
-
-        PlayerPrefs.SetInt("HighScore", highScore); //set the playerPref for the high score
-    }//end GetHighScore()
-
 }
