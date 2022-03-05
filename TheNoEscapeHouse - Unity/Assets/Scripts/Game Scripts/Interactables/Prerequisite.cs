@@ -24,6 +24,7 @@ public class Prerequisite : MonoBehaviour
     public string dialog = "";
     public TextMeshProUGUI text;
     public float timer = 2f;
+    public GameObject activateOB;
 
     public bool Complete
     {
@@ -39,6 +40,8 @@ public class Prerequisite : MonoBehaviour
                     return true;
                 if (GameManager.ins.itemHeld.itemName == checkCollector.myItem.itemName)
                 {
+                    if (activateOB != null)
+                        activateOB.gameObject.SetActive(true);
                     prereqMet = true;
                     checkCollector.myItem.itemUsed = true;
                     GameManager.ins.itemHeld.itemName = "";
