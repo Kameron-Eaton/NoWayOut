@@ -22,6 +22,7 @@ public class FadeCam : MonoBehaviour
         blackScreen.color = Color.black;
         blackScreen.canvasRenderer.SetAlpha(1.0f);
         blackScreen.CrossFadeAlpha(0.0f, time, false);
+        StartCoroutine (enumerator());
     }
     public void FadeToBlack()
     {
@@ -29,4 +30,11 @@ public class FadeCam : MonoBehaviour
         blackScreen.canvasRenderer.SetAlpha(0.0f);
         blackScreen.CrossFadeAlpha(1.0f, time, false);
     }
+
+    IEnumerator enumerator()
+    {
+        yield return new WaitForSeconds(3.5f);
+        blackScreen.enabled = false;
+    }
+
 }
