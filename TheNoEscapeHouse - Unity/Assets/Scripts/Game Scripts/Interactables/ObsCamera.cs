@@ -25,6 +25,16 @@ public class ObsCamera : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            if (model.localScale.x > 5f || model.localScale.x < 0)
+                model.localScale = new Vector3(1f, 1f, 1f);
+            Vector3 lTemp = model.localScale;
+            lTemp.x += Input.GetAxis("Mouse ScrollWheel");
+            lTemp.y += Input.GetAxis("Mouse ScrollWheel");
+            lTemp.z += Input.GetAxis("Mouse ScrollWheel");
+            model.localScale = lTemp;
+        }
         if (Input.GetMouseButton(0) && (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0))
         {
             if(model == null)
