@@ -48,38 +48,8 @@ public class GameManager : MonoBehaviour
     public string gameCredits = "Made by Me"; //game creator(s)
     public string copyrightDate = "Copyright " + thisDay; //date cretaed
 
-    [Header("GAME SETTINGS")]
-
-    [Tooltip("Will the high score be recoreded")]
-    public bool recordHighScore = false; //is the High Score recorded
-
-    [SerializeField] //Access to private variables in editor
-    private int defaultHighScore = 1000;
-    static public int highScore = 1000; // the default High Score
-    public int HighScore { get { return highScore; } set { highScore = value; } }//access to private variable highScore [get/set methods]
-
     [Space(10)]
-    
-    //static vairables can not be updated in the inspector, however private serialized fileds can be
-    [SerializeField] //Access to private variables in editor
-    private int numberOfLives; //set number of lives in the inspector
-    static public int lives; // number of lives for player 
-    public int Lives { get { return lives; } set { lives = value; } }//access to private variable died [get/set methods]
-
-    static public int score;  //score value
-    public int Score { get { return score; } set { score = value; } }//access to private variable died [get/set methods]
-
-    [SerializeField] //Access to private variables in editor
-    [Tooltip("Check to test player lost the level")]
-    private bool levelLost = false;//we have lost the level (ie. player died)
-    public bool LevelLost { get { return levelLost; } set { levelLost = value; } } //access to private variable lostLevel [get/set methods]
-
-    [Space(10)]
-    public string defaultEndMessage = "Game Over";//the end screen message, depends on winning outcome
-    public string looseMessage = "You Loose"; //Message if player looses
-    public string winMessage = "You Win"; //Message if player wins
-    [HideInInspector] public string endMsg ;//the end screen message, depends on winning outcome
-
+   
     [Header("SCENE SETTINGS")]
     [Tooltip("Name of the start scene")]
     public string startScene;
@@ -162,17 +132,6 @@ public class GameManager : MonoBehaviour
         //if ESC is pressed , exit game
         if (Input.GetKey("escape")) { ExitGame(); }
         
-        //Check for next level
-        if (nextLevel) { NextLevel(); }
-
-        //if we are playing the game
-        if (gameState == gameStates.Playing)
-        {
-            //if we have died and have no more lives, go to game over
-            if (levelLost && (lives == 0)) { GameOver(); }
-
-        }//end if (gameState == gameStates.Playing)
-
         if(Input.GetMouseButtonDown(1) && currNode.GetComponent<Prop>() != null)
         {
             if (ivCanvas.gameObject.activeInHierarchy)
@@ -192,7 +151,7 @@ public class GameManager : MonoBehaviour
 
 
     //LOAD THE GAME FOR THE FIRST TIME OR RESTART
-   public void StartGame()
+    public void StartGame()
     {
         //SET ALL GAME LEVEL VARIABLES FOR START OF GAME
 
@@ -201,10 +160,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(gameLevels[loadLevel]); //load first game level
 
         gameState = gameStates.Playing; //set the game state to playing
-
-        lives = numberOfLives; //set the number of lives
-        score = 0; //set starting score
-    }//end StartGame()
+    }
 
 
 
@@ -213,36 +169,6 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Exited Game");
-    }//end ExitGame()
-
-
-    //GO TO THE GAME OVER SCENE
-    public void GameOver()
-    {
-        gameState = gameStates.GameOver; //set the game state to gameOver
-
-       if(playerWon) { endMsg = winMessage; } else { endMsg = looseMessage; } //set the end message
-
-        SceneManager.LoadScene(gameOverScene); //load the game over scene
-        Debug.Log("Gameover");
-    }
-    
-    
-    //GO TO THE NEXT LEVEL
-        void NextLevel()
-    {
-        nextLevel = false; //reset the next level
-
-        //as long as our level count is not more than the amount of levels
-        if (gameLevelsCount < gameLevels.Length)
-        {
-            gameLevelsCount++; //add to level count for next level
-            loadLevel = gameLevelsCount - 1; //find the next level in the array
-            SceneManager.LoadScene(gameLevels[loadLevel]); //load next level
-
-        }else{ //if we have run out of levels go to game over
-            GameOver();
-        } //end if (gameLevelsCount <=  gameLevels.Length)
-
-    }//end NextLevel()
+    }//end ExitGame
+  
 }

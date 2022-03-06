@@ -17,6 +17,7 @@ public class interSwitch : Interactable
     public bool animate;
     public List<AnimateReactor> ANI;
     public AudioSource sound;
+    public GameObject activateOB;
 
     public delegate void OnStateChange();
     public event OnStateChange Change;
@@ -33,6 +34,8 @@ public class interSwitch : Interactable
                 playAni.React("Flipped");
             }
         }
+        if (activateOB != null)
+            activateOB.SetActive(true);
         if (sound != null)
             sound.Play();
         state = !state;

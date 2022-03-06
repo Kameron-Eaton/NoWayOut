@@ -26,6 +26,7 @@ public class FadeCam : MonoBehaviour
     }
     public void FadeToBlack()
     {
+        blackScreen.enabled = true;
         blackScreen.color = Color.black;
         blackScreen.canvasRenderer.SetAlpha(0.0f);
         blackScreen.CrossFadeAlpha(1.0f, time, false);

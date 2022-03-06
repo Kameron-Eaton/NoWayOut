@@ -18,17 +18,27 @@ public class ObsCamera : MonoBehaviour
 
     public Transform rig;
 
+    public float max;
+
     public float sensitivity = 3.0f;
 
     Quaternion modelRot;
     Quaternion rigRot;
 
+    Vector3 startScale = Vector3.zero;
+
+    private void Start()
+    {
+        startScale = model.localScale;
+        max = model.localScale.x * 5.0f;
+    }
+
     void Update()
     {
         if(Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
-            if (model.localScale.x > 5f || model.localScale.x < 0)
-                model.localScale = new Vector3(1f, 1f, 1f);
+            if (model.localScale.x > max || model.localScale.x < 0.1f)
+                model.localScale = startScale;
             Vector3 lTemp = model.localScale;
             lTemp.x += Input.GetAxis("Mouse ScrollWheel");
             lTemp.y += Input.GetAxis("Mouse ScrollWheel");

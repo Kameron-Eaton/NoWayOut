@@ -6628,14 +6628,6 @@ MonoBehaviour:
   gameTitle: Untitled Game
   gameCredits: Made by Me
   copyrightDate: Copyright 2022
-  recordHighScore: 1
-  defaultHighScore: 1000
-  numberOfLives: 0
-  levelLost: 0
-  defaultEndMessage: Game Over
-  looseMessage: You Loose
-  winMessage: You Win
-  endMsg: 
   startScene: start_scene
   gameOverScene: end_scene
   gameLevels:
@@ -9564,6 +9556,7 @@ MonoBehaviour:
   dialog: 
   text: {fileID: 0}
   timer: 2
+  activateOB: {fileID: 0}
   checkCollector: {fileID: 0}
 --- !u!1 &890038665
 GameObject:
@@ -12308,6 +12301,7 @@ MonoBehaviour:
   - {fileID: 769661882}
   - {fileID: 2078055842}
   sound: {fileID: 337521468}
+  activateOB: {fileID: 0}
 --- !u!114 &1183577108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12328,6 +12322,7 @@ MonoBehaviour:
   dialog: The lever is jammed. Some force can knock it loose
   text: {fileID: 1360841485}
   timer: 2
+  activateOB: {fileID: 0}
   checkCollector: {fileID: 67615149}
 --- !u!1 &1192145130
 GameObject:
@@ -12479,6 +12474,7 @@ MonoBehaviour:
   ANI:
   - {fileID: 2015438221}
   sound: {fileID: 993391182}
+  activateOB: {fileID: 0}
 --- !u!1001 &1270715147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14825,6 +14821,7 @@ MonoBehaviour:
   dialog: 
   text: {fileID: 0}
   timer: 2
+  activateOB: {fileID: 0}
   checkCollector: {fileID: 0}
 --- !u!1 &1543739221
 GameObject:
@@ -17005,7 +17002,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 015da0f3dbeb55f4c82fb3d0587dcca1, type: 2}
+  - {fileID: 2100000, guid: 1d0c0bac13326d14a8fb5fda102ea2f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17219,6 +17216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 0}
   rig: {fileID: 1543739222}
+  max: 0
   sensitivity: 3
 --- !u!1 &1791946348
 GameObject:
@@ -20114,6 +20112,7 @@ MonoBehaviour:
   dialog: The door is locked. It needs a key to open.
   text: {fileID: 1124326644}
   timer: 2
+  activateOB: {fileID: 0}
   checkCollector: {fileID: 92202653}
 --- !u!114 &2089836734
 MonoBehaviour:
